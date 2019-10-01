@@ -187,7 +187,7 @@ app.post(`/encrypt-AES-Secret-Key-With-PubKey`, (req, res) => {
 
 
 app.get("/test", (req, res) => {
-    childprocess.exec("")
+    res.send("Work!!!")
 })
 
 function createTmpFile(contentFile) {
