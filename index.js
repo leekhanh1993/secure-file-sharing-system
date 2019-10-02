@@ -57,7 +57,6 @@ app.get('/generate-keypair', (req, res) => {
                     fs.unlinkSync(tmpPrv)
                     res.status(404).send(err2)
                 } else {
-                    // fs.writeFileSync("./receiver/private-key.pem", prv)
                     fs.writeFileSync("./sender/public-key.pem", pub)
                     fs.unlinkSync(tmpPrv)
                     res.send(prv)
@@ -100,14 +99,6 @@ app.post("/decrypt-encrypted-file-AES", (req, res) => {
     var password = req.body.password
     var hash = req.body.hash
     var tmpFile = createTmpFile(hash)
-    // childprocess.exec(`openssl enc -aes-256-cbc -d -in ./receiver/${hash} -pass pass:${password}`,
-    //     (err1, stdout1, stderr1) => {
-    //         if (err1) {
-    //             res.status(404).send(err1)
-    //         } else {
-    //             res.send(stdout1)
-    //         }
-    //     })
     childprocess.exec(`openssl enc -aes-256-cbc -d -in ./receiver/${hash} -pass pass:${password}`,
         (err1, stdout1, stderr1) => {
             if (err1) {
